@@ -1,0 +1,2 @@
+rootProject.name = "HelloJni"
+include ':app'
