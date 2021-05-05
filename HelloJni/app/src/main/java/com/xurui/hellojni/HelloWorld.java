@@ -21,6 +21,14 @@ public class HelloWorld {
         return mName;
     }
 
+    private static void sHelloJava() {
+        Log.d(MainActivity.Companion.getTAG(), "静态方法 helloJava");
+    }
+
+    private void helloJava() {
+        Log.d(MainActivity.Companion.getTAG(), "实例方法 helloJava");
+    }
+
     static {
         System.loadLibrary("Hello-World");
     }
@@ -29,5 +37,6 @@ public class HelloWorld {
 
     public native void accessField();
 
+    public native void accessMethod();
 
 }

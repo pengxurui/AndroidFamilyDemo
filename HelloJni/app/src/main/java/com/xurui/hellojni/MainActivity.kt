@@ -17,10 +17,13 @@ class MainActivity : AppCompatActivity() {
         val jni = HelloWorld()
         jni.sayHi()
 
-        // 访问静态字段和动态字段
+        // 访问静态字段和实例字段
         jni.accessField()
         Log.d(TAG, HelloWorld.getsName())
         Log.d(TAG, jni.getmName())
+
+        // 访问静态方法和实例方法
+        jni.accessMethod()
 
     }
 }

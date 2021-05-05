@@ -20,6 +20,11 @@ JNIEXPORT void JNICALL Java_com_xurui_hellojni_HelloWorld_sayHi
 JNIEXPORT void JNICALL Java_com_xurui_hellojni_HelloWorld_accessField
         (JNIEnv *, jobject);
 
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_xurui_hellojni_HelloWorld_accessMethod
+        (JNIEnv *env, jobject thiz);
+
 #ifdef __cplusplus
 }
 #endif

@@ -49,3 +49,20 @@ Java_com_xurui_hellojni_HelloWorld_accessField(JNIEnv *env, jobject thiz) {
         }
     }
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_xurui_hellojni_HelloWorld_accessMethod(JNIEnv *env, jobject thiz) {
+    // 获取 jclass
+    jclass clz = env->GetObjectClass(thiz);
+    // 静态方法 ID
+    jmethodID sMethodId = env->GetStaticMethodID(clz, "sHelloJava", "()V");
+    if (sMethodId) {
+        env->CallStaticVoidMethod(clz, sMethodId);
+    }
+    // 实例方法 ID
+    jmethodID mMethodId = env->GetMethodID(clz, "helloJava", "()V");
+    if (mMethodId) {
+        env->CallVoidMethod(thiz, mMethodId);
+    }
+}
