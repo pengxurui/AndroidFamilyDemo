@@ -15,7 +15,10 @@ extern "C" {
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_xurui_hellojni_HelloWorld_sayHi
-  (JNIEnv *, jobject);
+        (JNIEnv *, jobject);
+
+JNIEXPORT void JNICALL Java_com_xurui_hellojni_HelloWorld_accessField
+        (JNIEnv *, jobject);
 
 #ifdef __cplusplus
 }
