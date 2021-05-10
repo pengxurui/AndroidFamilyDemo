@@ -16,17 +16,17 @@ import kotlin.reflect.KProperty
 
 fun <T> fragmentArgumentNullable(defaultValue: T? = null) = FragmentArgumentDelegateNullable(defaultValue)
 
-fun <T> fragmentArgument() = FragmentArgumentDelegate<T>()
+fun <T> fragmentArgument() = FragmentArgumentProperty<T>()
 
 fun <T> activityArgumentNullable(defaultValue: T? = null) = ActivityArgumentDelegateNullable(defaultValue)
 
-fun <T> activityArgument() = ActivityArgumentDelegate<T>()
+fun <T> activityArgument() = ActivityArgumentProperty<T>()
 
 // --------------------------------------------------------------------------------------
 // Fragment
 // --------------------------------------------------------------------------------------
 
-class FragmentArgumentDelegate<T> : ReadWriteProperty<Fragment, T> {
+class FragmentArgumentProperty<T> : ReadWriteProperty<Fragment, T> {
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
         return thisRef.arguments?.getValue(property.name) as? T
@@ -63,7 +63,7 @@ class FragmentArgumentDelegateNullable<T>(private val defaultValue: T? = null) :
 // Activity
 // --------------------------------------------------------------------------------------
 
-class ActivityArgumentDelegate<T> : ReadOnlyProperty<Activity, T> {
+class ActivityArgumentProperty<T> : ReadOnlyProperty<Activity, T> {
 
     override fun getValue(thisRef: Activity, property: KProperty<*>): T {
         return thisRef.intent?.extras?.getValue(property.name) as? T

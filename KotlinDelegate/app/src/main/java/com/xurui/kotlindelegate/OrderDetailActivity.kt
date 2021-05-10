@@ -30,6 +30,8 @@ class OrderDetailActivity : AppCompatActivity() {
             add(R.id.containerId, fragment)
             commit()
         }
+
+        OrderDetailDialogFragment().show(supportFragmentManager, "")
     }
 }
 

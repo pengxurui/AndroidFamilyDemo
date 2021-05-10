@@ -1,11 +1,10 @@
 package com.xurui.kotlindelegate
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.xurui.kotlindelegate.databinding.FragmentOrderDetailBinding
+import com.xurui.kotlindelegate.delegate.viewBinding
 
 /**
  * <p>
@@ -13,7 +12,7 @@ import androidx.fragment.app.Fragment
  */
 class OrderDetailFragment : Fragment(R.layout.fragment_order_detail) {
 
-    private lateinit var tvDisplay: TextView
+    private val binding by viewBinding(FragmentOrderDetailBinding::bind)
 
     private var orderId: Int by fragmentArgument()
     private var orderType: Int? by fragmentArgumentNullable(2)
@@ -29,7 +28,6 @@ class OrderDetailFragment : Fragment(R.layout.fragment_order_detail) {
         // Try to modify (UnExcepted)
         this.orderType = 3
         // Display Value
-        tvDisplay = root.findViewById(R.id.tv_display)
-        tvDisplay.text = "orderId = $orderId, orderType = $orderType"
+        binding.tvDisplay.text = "orderId = $orderId, orderType = $orderType"
     }
 }
