@@ -17,7 +17,11 @@
 
 演示 Kotlin 委托机制
 
-相关文章：[Kotlin | 委托机制 & 原理](https://juejin.cn/post/6958346113552220173)
+相关文章：
+
+[Kotlin | 委托机制 & 原理](https://juejin.cn/post/6958346113552220173)
+
+[Android | ViewBinding 与 Kotlin 委托双剑合璧](https://juejin.cn/post/6960914424865488932)
 
 
 
