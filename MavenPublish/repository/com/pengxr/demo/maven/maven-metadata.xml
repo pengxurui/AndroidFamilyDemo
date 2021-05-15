@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.pengxr.demo</groupId>
+  <artifactId>maven</artifactId>
+  <versioning>
+    <release>v1.0.0</release>
+    <versions>
+      <version>v1.0.0</version>
+    </versions>
+    <lastUpdated>20210515123427</lastUpdated>
+  </versioning>
+</metadata>
