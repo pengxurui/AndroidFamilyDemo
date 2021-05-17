@@ -1,9 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-//apply plugin: 'maven' // Maven 插件
-apply plugin: 'com.github.dcendents.android-maven' // GitHub Maven 插件
-
-group = 'com.github.pengxurui' // github 的用户名
+apply from: '../maven.gradle'
 
 android {
     compileSdkVersion 30
@@ -42,16 +39,4 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            // 直接发布到项目本地路径
-            repository(url: uri('../repository'))
-            pom.groupId = "com.pengxr.demo"
-            pom.artifactId = "maven"
-            pom.version = "v1.0.0"
-        }
-    }
 }
