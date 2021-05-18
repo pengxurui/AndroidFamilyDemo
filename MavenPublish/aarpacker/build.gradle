@@ -1,0 +1,35 @@
+apply plugin: 'maven-publish'
+
+def libPath = project.getProjectDir().getAbsolutePath()
+
+publishing {
+    publications {
+        lib1(MavenPublication) {
+            groupId MAVEN_GROUP_ID
+            artifactId "lib"
+            version "v1.0.0"
+            artifact(libPath + "/libs/lib-debug.aar")
+        }
+
+        lib2(MavenPublication) {
+            groupId MAVEN_GROUP_ID
+            artifactId "lib2"
+            version "v1.0.0"
+            artifact(libPath + "/libs/lib-debug.aar")
+        }
+    }
+    repositories {
+        maven {
+            // 发布仓库路径
+            url MAVEN_RELEASE_URL
+
+            // 本地仓库地址不适用账号密码
+            // > Failed to publish publication 'maven' to repository 'maven'
+            // > Authentication scheme 'all'(Authentication) is not supported by protocol 'file'
+            // credentials(PasswordCredentials) {
+            //     username = MAVEN_USERNAME
+            //     password = MAVEN_PASSWORD
+            // }
+        }
+    }
+}

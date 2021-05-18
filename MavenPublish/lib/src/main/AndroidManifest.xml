@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MavenPublish">
-        <activity android:name=".PublishActivity">
+        <activity android:name=".PublishActivity1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

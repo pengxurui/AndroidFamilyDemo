@@ -1,3 +1,6 @@
 rootProject.name = "MavenPublish"
 include ':app'
 include ':lib'
+include ':aarlib'
+include ':aarlib2'
+include ':aarpacker'
