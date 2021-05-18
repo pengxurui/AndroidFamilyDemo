@@ -25,6 +25,32 @@
 
 
 
+---
+## MavenPublish
+
+演示组件化发布
+
+相关文章：
+
+[Android工程化实践：组件化发布](https://juejin.cn/post/6963633839860088846)
+
+
+---
+## HelloAndroidX
+
+演示 AndroidX 新组件
+
+相关文章：
+
+----
+#### 踩坑记录
+
+1、升级到 Android Stidio 4.2 之后，如果在 Gradle 栏目中找不到 Task 列表，在设置里取消勾选此项即可：
+
+![](https://upload-images.jianshu.io/upload_images/10107787-b037ae917d7fccac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+2、构建报找不到包：Unable to resolve dependency for 'com.pengxr.demo:maven:v1.0.0’，可能是本地仓库中没有对应的类库。你需要先执行发布任务 uploadArchives。在 DemoHall 工程中，我声明了两个本地仓库：/snapshotRepository 和 /releaseRepository，分别对应快照版本和正式版本。更多细节可以阅读【MavenPublish Demo】的相关文章。
+
 
 ---
 #### License
