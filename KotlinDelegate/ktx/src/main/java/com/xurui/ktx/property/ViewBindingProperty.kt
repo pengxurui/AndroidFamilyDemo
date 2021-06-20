@@ -18,6 +18,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -84,7 +85,7 @@ inline fun <F : Fragment, V : ViewBinding> Fragment.viewBinding(
 // ViewBindingProperty for ViewGroup
 // -------------------------------------------------------------------------------------
 
-@JvmName("viewBindingActivity")
+@JvmName("viewBindingViewGroup")
 inline fun <V : ViewBinding> ViewGroup.viewBinding(
     crossinline viewBinder: (View) -> V,
     crossinline viewProvider: (ViewGroup) -> View = { this }
@@ -92,7 +93,7 @@ inline fun <V : ViewBinding> ViewGroup.viewBinding(
     viewBinder(viewProvider(viewGroup))
 }
 
-@JvmName("viewBindingActivity")
+@JvmName("viewBindingViewGroup")
 inline fun <V : ViewBinding> ViewGroup.viewBinding(
     crossinline viewBinder: (View) -> V,
     @IdRes viewBindingRootId: Int
@@ -104,6 +105,21 @@ inline fun <V : ViewBinding> ViewGroup.viewBinding(
 // ViewBindingProperty for RecyvlerView#ViewHolder
 // -------------------------------------------------------------------------------------
 
+@JvmName("viewBindingViewHolder")
+inline fun <V : ViewBinding> RecyclerView.ViewHolder.viewBinding(
+    crossinline viewBinder: (View) -> V,
+    crossinline viewProvider: (RecyclerView.ViewHolder) -> View = RecyclerView.ViewHolder::itemView
+): ViewBindingProperty<RecyclerView.ViewHolder, V> = LazyViewBindingProperty { holder: RecyclerView.ViewHolder ->
+    viewBinder(viewProvider(holder))
+}
+
+@JvmName("viewBindingViewHolder")
+inline fun <V : ViewBinding> RecyclerView.ViewHolder.viewBinding(
+    crossinline viewBinder: (View) -> V,
+    @IdRes viewBindingRootId: Int
+): ViewBindingProperty<RecyclerView.ViewHolder, V> = LazyViewBindingProperty { holder: RecyclerView.ViewHolder ->
+    viewBinder(holder.itemView.requireViewByIdCompat(viewBindingRootId))
+}
 
 // -------------------------------------------------------------------------------------
 // ViewBindingProperty
