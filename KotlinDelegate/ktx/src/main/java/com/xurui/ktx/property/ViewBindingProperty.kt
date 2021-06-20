@@ -1,4 +1,4 @@
-package com.xurui.kotlindelegate.delegate
+package com.xurui.ktx.property
 
 import android.app.Activity
 import android.os.Handler

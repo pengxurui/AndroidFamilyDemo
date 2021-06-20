@@ -3,7 +3,7 @@ package com.xurui.kotlindelegate
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.xurui.kotlindelegate.databinding.ActivityMainBinding
-import com.xurui.kotlindelegate.delegate.viewBinding
+import com.xurui.ktx.property.viewBinding
 
 class MainActivity : AppCompatActivity() {
 

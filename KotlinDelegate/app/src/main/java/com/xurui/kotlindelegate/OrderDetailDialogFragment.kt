@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.xurui.kotlindelegate.databinding.DialogOrderDetailBinding
-import com.xurui.kotlindelegate.delegate.viewBinding
+import com.xurui.ktx.property.viewBinding
 
 /**
  * Created by pengxr on 11/5/2021
