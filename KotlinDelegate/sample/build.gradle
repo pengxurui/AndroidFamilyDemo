@@ -44,6 +44,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     implementation 'com.pengxr:ktx:v1.0.0'
 }
