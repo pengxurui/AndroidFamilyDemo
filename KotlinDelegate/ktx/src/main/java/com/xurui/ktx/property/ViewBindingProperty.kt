@@ -33,23 +33,23 @@ import kotlin.reflect.KProperty
 // -------------------------------------------------------------------------------------
 
 @JvmName("viewBindingActivity")
-inline fun <A : ComponentActivity, V : ViewBinding> viewBinding(
+inline fun <V : ViewBinding> ComponentActivity.viewBinding(
     crossinline viewBinder: (View) -> V,
-    crossinline viewProvider: (A) -> View = ::findRootView
-): ViewBindingProperty<A, V> = ActivityViewBindingProperty { activity: A ->
+    crossinline viewProvider: (ComponentActivity) -> View = ::findRootView
+): ViewBindingProperty<ComponentActivity, V> = ActivityViewBindingProperty { activity: ComponentActivity ->
     viewBinder(viewProvider(activity))
 }
 
 @JvmName("viewBindingActivity")
-inline fun <A : ComponentActivity, V : ViewBinding> viewBinding(
+inline fun <V : ViewBinding> ComponentActivity.viewBinding(
     crossinline viewBinder: (View) -> V,
     @IdRes viewBindingRootId: Int
-): ViewBindingProperty<A, V> = ActivityViewBindingProperty { activity: A ->
+): ViewBindingProperty<ComponentActivity, V> = ActivityViewBindingProperty { activity: ComponentActivity ->
     viewBinder(activity.requireViewByIdCompat(viewBindingRootId))
 }
 
 // -------------------------------------------------------------------------------------
-// ViewBindingProperty for Fragment
+// ViewBindingProperty for Fragment / DialogFragment
 // -------------------------------------------------------------------------------------
 
 @Suppress("UNCHECKED_CAST")
@@ -81,6 +81,31 @@ inline fun <F : Fragment, V : ViewBinding> Fragment.viewBinding(
 }
 
 // -------------------------------------------------------------------------------------
+// ViewBindingProperty for ViewGroup
+// -------------------------------------------------------------------------------------
+
+@JvmName("viewBindingActivity")
+inline fun <V : ViewBinding> ViewGroup.viewBinding(
+    crossinline viewBinder: (View) -> V,
+    crossinline viewProvider: (ViewGroup) -> View = { this }
+): ViewBindingProperty<ViewGroup, V> = LazyViewBindingProperty { viewGroup: ViewGroup ->
+    viewBinder(viewProvider(viewGroup))
+}
+
+@JvmName("viewBindingActivity")
+inline fun <V : ViewBinding> ViewGroup.viewBinding(
+    crossinline viewBinder: (View) -> V,
+    @IdRes viewBindingRootId: Int
+): ViewBindingProperty<ViewGroup, V> = LazyViewBindingProperty { viewGroup: ViewGroup ->
+    viewBinder(viewGroup.requireViewByIdCompat(viewBindingRootId))
+}
+
+// -------------------------------------------------------------------------------------
+// ViewBindingProperty for RecyvlerView#ViewHolder
+// -------------------------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------------------------
 // ViewBindingProperty
 // -------------------------------------------------------------------------------------
 
@@ -89,6 +114,29 @@ private const val TAG = "ViewBindingProperty"
 interface ViewBindingProperty<in R : Any, out V : ViewBinding> : ReadOnlyProperty<R, V> {
     @MainThread
     fun clear()
+}
+
+class LazyViewBindingProperty<in R : Any, out V : ViewBinding>(
+    private val viewBinder: (R) -> V
+) : ViewBindingProperty<R, V> {
+
+    private var viewBinding: V? = null
+
+    @Suppress("UNCHECKED_CAST")
+    @MainThread
+    override fun getValue(thisRef: R, property: KProperty<*>): V {
+        // Already bound
+        viewBinding?.let { return it }
+
+        return viewBinder(thisRef).also {
+            this.viewBinding = it
+        }
+    }
+
+    @MainThread
+    override fun clear() {
+        viewBinding = null
+    }
 }
 
 abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
@@ -108,10 +156,10 @@ abstract class LifecycleViewBindingProperty<in R : Any, out V : ViewBinding>(
         val viewBinding = viewBinder(thisRef)
         if (lifecycle.currentState == Lifecycle.State.DESTROYED) {
             Log.w(
-                TAG, "Access to viewBinding after Lifecycle is destroyed or hasn'V created yet. " +
+                TAG, "Access to viewBinding after Lifecycle is destroyed or hasn't created yet. " +
                         "The instance of viewBinding will be not cached."
             )
-            // We can access to ViewBinding after Fragment.onDestroyView(), but don'V save it to prevent memory leak
+            // We can access to ViewBinding after Fragment.onDestroyView(), but don't save it to prevent memory leak
         } else {
             lifecycle.addObserver(ClearOnDestroyLifecycleObserver(this))
             this.viewBinding = viewBinding

@@ -29,6 +29,7 @@ class OrderDetailFragment : Fragment(R.layout.fragment_order_detail) {
         // Try to modify (UnExcepted)
         // this.orderType = 3
         // Display Value
-        binding.tvDisplay.text = "orderId = $orderId, orderType = $orderType"
+        binding.viewOrder.setOrderId(orderId)
+        binding.viewOrder.setOrderType(orderType)
     }
 }
