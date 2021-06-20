@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xurui.helloandroidx.backpress.startBackPressActivity
 import com.xurui.helloandroidx.databinding.ActivityMainBinding
-import com.xurui.ktx.viewBinding
+import com.xurui.ktx.property.viewBinding
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

@@ -7,8 +7,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.xurui.helloandroidx.R
 import com.xurui.helloandroidx.databinding.FragmentBackpressBinding
-import com.xurui.ktx.fragmentArgument
-import com.xurui.ktx.viewBinding
+import com.xurui.ktx.property.argument
+import com.xurui.ktx.property.viewBinding
 
 /**
  * Created by pengxr on 17/5/2021
@@ -17,7 +17,7 @@ class BackPressFragment : Fragment(R.layout.fragment_backpress) {
 
     private val dispatcher by lazy { requireActivity().onBackPressedDispatcher }
 
-    var text: String by fragmentArgument()
+    var text: String by argument()
 
     private val binding by viewBinding(FragmentBackpressBinding::bind)
 

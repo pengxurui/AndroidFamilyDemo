@@ -10,7 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.xurui.helloandroidx.R
 import com.xurui.helloandroidx.databinding.ActivityBackpressBinding
-import com.xurui.ktx.viewBinding
+import com.xurui.ktx.property.viewBinding
 import kotlin.system.exitProcess
 
 /**

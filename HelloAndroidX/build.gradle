@@ -16,10 +16,10 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
         maven { url MAVEN_RELEASE_URL }
         maven { url MAVEN_SNAPSHOT_URL }
+        google()
+        mavenCentral()
     }
 }
 
