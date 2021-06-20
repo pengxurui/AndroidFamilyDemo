@@ -42,6 +42,8 @@
 
 相关文章：
 
+[Android | Jetpack 处理回退事件的新姿势 —— OnBackPressedDispatcher](https://juejin.cn/post/6967039557220958244)
+
 ----
 #### 踩坑记录
 
