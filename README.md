@@ -8,9 +8,7 @@
 
 相关文章：
 
-
-
-
+[NDK | 带你点亮 JNI 开发基石符文 (一)](https://juejin.cn/post/6973486697245835294)
 
 ---
 ## KotlinDelegate
