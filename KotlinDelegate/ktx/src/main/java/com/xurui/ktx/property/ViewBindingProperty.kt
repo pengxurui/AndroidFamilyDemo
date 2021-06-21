@@ -102,7 +102,7 @@ inline fun <V : ViewBinding> ViewGroup.viewBinding(
 }
 
 // -------------------------------------------------------------------------------------
-// ViewBindingProperty for RecyvlerView#ViewHolder
+// ViewBindingProperty for RecyclerView#ViewHolder
 // -------------------------------------------------------------------------------------
 
 @JvmName("viewBindingViewHolder")
