@@ -10,7 +10,7 @@ By the way, If you don't know much about Kotlin delegation, this article will he
 
 ## About AKotlinDelegates
 
-[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/AKotlinDelegates)🔥 is an easy-to-use Android Kotlin delegate tool. It encapsulates a series of kotlin delegation properties for Android development scenarios. Using its APIs can improve the development efficiency. At present, the implemented scenarios are as follows:
+[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate)🔥 is an easy-to-use Android Kotlin delegate tool. It encapsulates a series of kotlin delegation properties for Android development scenarios. Using its APIs can improve the development efficiency. At present, the implemented scenarios are as follows:
 
 #### ✅ Fragment / Activity Arguments
 
