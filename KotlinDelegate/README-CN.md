@@ -10,7 +10,7 @@
 
 ## 二、关于 KotlinDelegate
 
-[KotlinDelegate](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate)🔥是一个易用的安卓 Kotlin 委托工具类库，它针对安卓开发场景封装了一系列 Kotlin 委托属性，利用其 APIs 可以提高开发效率。目前，已经实现的场景有：
+[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate)🔥是一个易用的安卓 Kotlin 委托工具类库，它针对安卓开发场景封装了一系列 Kotlin 委托属性，利用其 APIs 可以提高开发效率。目前，已经实现的场景有：
 
 #### ✅ Kotlin 委托 + Fragment / Activity 传参
 
