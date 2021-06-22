@@ -11,17 +11,17 @@
 [NDK | 带你点亮 JNI 开发基石符文 (一)](https://juejin.cn/post/6973486697245835294)
 
 ---
-## KotlinDelegate
+## ✅ AKotlinDelegates
 
-演示 Kotlin 委托机制
+Kotlin Delegate is a feature of Kotlin, which is used to implement delegate pattern more gracefully. In fact, the "by" syntax is some kind of essentially compiler oriented syntax sugar. Three kinds of delegate (class delegate, object delegate and local variable delegate) will be converted to "sugar free syntax" at compile time. For example, class delegation: the compiler will implements all methods of the base interface and delegates them directly to the base object. For another example, object delegate and local variable delegate: the compiler will generate the auxiliary property (prop $degelate), while the getter() and setter() methods of the property / variable are simply delegated to the getvalue() and setvalue() methods of the auxiliary property.
 
-相关文章：
+[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate) is an easy-to-use Android Kotlin delegate tool. It encapsulates a series of kotlin delegation properties for Android development scenarios. Using its APIs can improve the development efficiency.
 
-[Kotlin | 委托机制 & 原理](https://juejin.cn/post/6958346113552220173)
+By the way, If you don't know much about Kotlin delegation, these articles will help you get started：
+
+[Kotlin | 委托机制 & 原理 & 应用](https://juejin.cn/post/6958346113552220173)
 
 [Android | ViewBinding 与 Kotlin 委托双剑合璧](https://juejin.cn/post/6960914424865488932)
-
-
 
 ---
 ## MavenPublish
