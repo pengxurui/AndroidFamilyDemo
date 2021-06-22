@@ -13,11 +13,11 @@
 ---
 ## ✅ AKotlinDelegates
 
-委托（Delegate）是 Kotlin 的一种语言特性，用于更加优雅地实现委托模式。其实，Kotlin 委托的语法关键字是 by，其本质上是面向编译器的语法糖，三种委托（类委托、对象委托和局部变量委托）在编译时都会转化为 “无糖语法”。例如类委托：编译器会实现基础接口的所有方法，并直接委托给基础对象来处理。例如对象委托和局部变量委托：在编译时会生成辅助属性（prop$degelate），而属性 / 变量的 getter() 和 setter() 方法只是简单地委托给辅助属性的 getValue() 和 setValue() 处理。
+Kotlin Delegate is a feature of Kotlin, which is used to implement delegate pattern more gracefully. In fact, the "by" syntax is some kind of essentially compiler oriented syntax sugar. Three kinds of delegate (class delegate, object delegate and local variable delegate) will be converted to "sugar free syntax" at compile time. For example, class delegation: the compiler will implements all methods of the base interface and delegates them directly to the base object. For another example, object delegate and local variable delegate: the compiler will generate the auxiliary property (prop $degelate), while the getter() and setter() methods of the property / variable are simply delegated to the getvalue() and setvalue() methods of the auxiliary property.
 
-[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate) 是一个易用的安卓 Kotlin 委托工具类库，它针对安卓开发场景封装了一系列 Kotlin 委托属性，利用其 APIs 可以提高开发效率。
+[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate) is an easy-to-use Android Kotlin delegate tool. It encapsulates a series of kotlin delegation properties for Android development scenarios. Using its APIs can improve the development efficiency.
 
-对了，如果你还不太了解 Kotlin 委托机制，这些文章会帮助你入门：
+By the way, If you don't know much about Kotlin delegation, these articles will help you get started：
 
 [Kotlin | 委托机制 & 原理 & 应用](https://juejin.cn/post/6958346113552220173)
 
@@ -67,4 +67,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
