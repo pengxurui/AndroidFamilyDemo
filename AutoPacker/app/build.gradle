@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.pengxr.autopacker"
+        minSdkVersion 17
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // 默认渠道
+        manifestPlaceholders = [channel_id: "AutoPacker"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 风味维度
+    flavorDimensions "channel"
+    productFlavors {
+        YingYongBao {
+            dimension "channel"
+            manifestPlaceholders = [channel_id: "YingYongBao"]
+        }
+        _360 {
+            dimension "channel"
+            manifestPlaceholders = [channel_id: "_360"] // 需要下划线
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.dependencies.kotlinStdlib
+    implementation rootProject.ext.dependencies.coreKtx
+    implementation rootProject.ext.dependencies.appcompat
+    implementation rootProject.ext.dependencies.material
+    implementation rootProject.ext.dependencies.constraintlayout
+    implementation rootProject.ext.dependencies.recyclerview
+    implementation rootProject.ext.dependencies.lifecycleExt
+}
