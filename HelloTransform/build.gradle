@@ -1,0 +1,43 @@
+apply from: 'dependencies.gradle'
+
+buildscript {
+    ext.kotlin_version = "1.6.21"
+    repositories {
+        maven { url "$rootDir/localMavenRepository/snapshot" }
+        maven { url "$rootDir/localMavenRepository/release" }
+
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url "https://jitpack.io" }
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.1.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+        if (ENABLED) {
+            classpath "com.pengxr:toast:1.1.0"
+            // For debug
+//            classpath project(':lib')
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "$rootDir/localMavenRepository/snapshot" }
+        maven { url "$rootDir/localMavenRepository/release" }
+
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url "https://jitpack.io" }
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

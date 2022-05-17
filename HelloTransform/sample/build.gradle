@@ -1,0 +1,28 @@
+apply from: '../config.gradle'
+
+project.ext.configAppModule project
+
+if (ENABLED) {
+    apply plugin: 'com.pengxr.toastplugin'
+}
+
+dependencies {
+    implementation SDK.ktx_jdk7
+    implementation SDK.core_ktx
+    implementation SDK.ktx_coroutines
+    implementation SDK.appcompat
+    implementation SDK.activityx
+    implementation SDK.activityx_ktx
+    implementation SDK.fragmentx
+    implementation SDK.fragmentx_ktx
+    implementation SDK.recyclerview
+    implementation SDK.material
+    implementation SDK.constraintlayout
+    implementation SDK.coordinatorlayout
+    implementation SDK.lifecycle_extensions
+
+//    implementation "com.pengxr.uploadexample:javalib:1.0.0"
+//    implementation "com.pengxr.uploadexample:kotlinlib:1.0.0"
+
+    compileOnly 'com.android.tools.build:gradle:7.1.0'
+}
