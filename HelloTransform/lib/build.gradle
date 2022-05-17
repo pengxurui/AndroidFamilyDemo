@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation "com.android.tools.build:gradle:7.1.0"
+    implementation 'com.android.tools:common:30.1.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21'
+    implementation 'org.javassist:javassist:3.22.0-GA'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+gradlePlugin {
+    plugins {
+        modularPlugin {
+            // Plugin id.
+            id = 'com.pengxr.toastplugin'
+            // Plugin implementation.
+            implementationClass = 'com.pengxr.toastplugin.ToastPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        ToastPlugin(MavenPublication) {
+            from components.java
+            groupId 'com.pengxr'
+            artifactId 'toast'
+            version "1.1.0"
+        }
+    }
+    repositories {
+        maven {
+            url "$rootDir/localMavenRepository/snapshot"
+        }
+    }
+}
