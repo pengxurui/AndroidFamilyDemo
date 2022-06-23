@@ -1,0 +1,44 @@
+apply from: '../config.gradle'
+
+if (isModular) {
+    project.ext.configAppModule project, APPID.login
+} else {
+    project.ext.configLibModule project
+}
+
+// 生成正式版本的 Manifest 文件
+generateReleaseManifest(project.name)
+
+android{
+    sourceSets {
+        main {
+            if (isModular) {
+                // 引用测试版 Manifest 文件（自动生成）
+                manifest.srcFile('src/main/AndroidManifest.xml')
+            } else {
+                // 引用正式版 Manifest 文件（自动生成）
+                manifest.srcFile('src/main/_ReleaseManifest/AndroidManifest.xml')
+                java {
+                    // 移除测试代码
+                    exclude '**/debug**'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation SDK.ktx_jdk7
+    implementation SDK.core_ktx
+    implementation SDK.ktx_coroutines
+    implementation SDK.appcompat
+    implementation SDK.activityx
+    implementation SDK.activityx_ktx
+    implementation SDK.fragmentx
+    implementation SDK.fragmentx_ktx
+    implementation SDK.recyclerview
+    implementation SDK.material
+    implementation SDK.constraintlayout
+    implementation SDK.coordinatorlayout
+    implementation SDK.lifecycle_extensions
+}

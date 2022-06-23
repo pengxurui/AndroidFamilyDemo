@@ -1,0 +1,54 @@
+apply from: '../config.gradle'
+
+// APP 壳配置
+project.ext.configAppModule project, APPID.app
+
+android {
+    defaultConfig {
+        // BuildConfig 配置
+        buildConfigField("boolean", "isModular", String.valueOf(isModular))
+    }
+
+    buildTypes {
+        debug {
+            // BuildConfig 配置
+            buildConfigField("String", "SERVER_URL", SERVER_URL_DEBUG)
+            // Manifest 占位符配置
+            manifestPlaceholders = [
+                    APPID : "DEBUG_ID"
+            ]
+            // 资源配置
+            resValue("string", "label", "测试")
+        }
+        release {
+            // BuildConfig 配置
+            buildConfigField("String", "SERVER_URL", SERVER_URL_RELEASE)
+            // Manifest 占位符配置
+            manifestPlaceholders = [
+                    APPID : "RELEASE_ID"
+            ]
+            // 资源配置
+            resValue("string", "label", "正式")
+        }
+    }
+}
+
+dependencies {
+    implementation SDK.ktx_jdk7
+    implementation SDK.core_ktx
+    implementation SDK.ktx_coroutines
+    implementation SDK.appcompat
+    implementation SDK.activityx
+    implementation SDK.activityx_ktx
+    implementation SDK.fragmentx
+    implementation SDK.fragmentx_ktx
+    implementation SDK.recyclerview
+    implementation SDK.material
+    implementation SDK.constraintlayout
+    implementation SDK.coordinatorlayout
+    implementation SDK.lifecycle_extensions
+
+    if (!isModular) {
+        implementation project(":loginlib")
+    }
+}

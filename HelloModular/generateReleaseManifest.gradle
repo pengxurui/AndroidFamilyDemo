@@ -1,0 +1,54 @@
+import groovy.xml.XmlUtil
+
+def log(String moduleName, String info) {
+    println("<$moduleName> ===> $info")
+}
+
+def generateReleaseManifest(String moduleName) {
+    String originDir = project(moduleName).projectDir
+    def releaseManifestDir = "${originDir}/src/main/_ReleaseManifest"
+    copy() {
+        from "${originDir}/src/main/AndroidManifest.xml"
+        into releaseManifestDir
+    }
+    def releaseManifestFile = "${releaseManifestDir}/AndroidManifest.xml"
+    def parser = new XmlParser(false, false)
+    def releaseManifestXml = parser.parse(releaseManifestFile)
+    releaseManifestXml.application.each { application ->
+        def keys = application.attributes().keySet()
+        def newKeyList = new ArrayList(keys)
+        newKeyList.forEach {
+            def attrStr = it.toString()
+            def filter = (attrStr.contains('android:allowBackup')
+                || attrStr.contains('android:supportRtl')
+                || attrStr.contains('android:theme')
+            )
+            if(!filter) {
+                log(moduleName, "remove application attrbutes :: ${it}")
+                application.attributes().remove(it)
+            }
+        }
+        application.attributes().keySet().forEach {
+            log(moduleName, "has application attrbutes :: ${it}")
+        }
+        def categoryList = releaseManifestXml.application.activity.'intent-filter'.category
+        log(moduleName, categoryList.toString())
+        categoryList.forEach { category ->
+            def categoryName = category.attributes().get('android:name')
+            if(categoryName == 'android.intent.category.LAUNCHER') {
+                def intentFilter = category.parent()
+                if(intentFilter.name() == 'intent-filter') {
+                    def delResult = intentFilter.parent().remove(intentFilter)
+                    log(moduleName, "del android.intent.category.LAUNCHER for intent-filter :: ${delResult}")
+                }
+            }
+        }
+        PrintWriter pw = new PrintWriter(releaseManifestFile, ("UTF-8"))
+        pw.write(XmlUtil.serialize(releaseManifestXml))
+        pw.close()
+    }
+}
+
+ext {
+    generateReleaseManifest = this.&generateReleaseManifest
+}

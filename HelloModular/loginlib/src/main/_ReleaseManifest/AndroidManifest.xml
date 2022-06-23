@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.pengxr.loginlib">
+    
+  <application android:theme="@style/Theme.MaterialComponents.NoActionBar">
+        
+    <activity android:name=".LoginActivity" android:exported="true"/>
+      
+  </application>
+  
+</manifest>
