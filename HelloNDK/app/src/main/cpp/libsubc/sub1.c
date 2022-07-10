@@ -4,5 +4,5 @@
 #include "sub1.h"
 
 const char *helloSub1() {
-    return "Hello Sub2.";
+    return "Hello Sub1.";
 }

@@ -5,7 +5,8 @@ plugins {
 
 android {
     compileSdk 32
-    ndkVersion "21.1.6352462"
+    // 对应 FFMPEG 4.0.2
+    ndkVersion "17.2.4988734"
     defaultConfig {
         applicationId "com.pengxr.hellondk"
         minSdk 21
@@ -16,8 +17,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags ''
+                abiFilters "armeabi-v7a"
             }
+        }
+
+        ndk {
+            // 指定CPU架构是armeabi-v7a  【注意：这里只指定编译所有库到armeabi-v7a进apk】
+            abiFilters("armeabi-v7a")
         }
     }
 
