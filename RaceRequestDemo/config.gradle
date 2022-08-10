@@ -1,0 +1,143 @@
+project.ext {
+
+    configAppModule = { project ->
+        project.apply plugin: 'com.android.application'
+        // kotlin 配置
+        configKotlin project
+        // Android 配置
+        configAndroid(project)
+        // 通用依赖配置
+        configDependencies project
+        // ARouter 配置
+        // configARouter project
+        // cpp 配置
+        // configCpp project
+    }
+
+    configLibModule = { project ->
+        project.apply plugin: 'com.android.library'
+        // kotlin 配置
+        configKotlin project
+        // Android 配置
+        configAndroid(project)
+        // 通用依赖配置
+        configDependencies project
+        // ARouter 配置
+        // configARouter project
+        // cpp 配置
+        // configCpp project
+    }
+
+    /**
+     * Android 配置
+     */
+    configAndroid = { project ->
+
+        project.android{
+            compileSdkVersion APP.compileSdkVersion
+            buildToolsVersion APP.buildToolsVersion
+
+            defaultConfig {
+                minSdkVersion APP.minSdkVersion
+                targetSdkVersion APP.targetSdkVersion
+                versionCode APP.versionCode
+                versionName APP.versionName
+
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                consumerProguardFiles 'consumer-rules.pro'
+
+                vectorDrawables.useSupportLibrary = true
+            }
+
+            // maven不缓存，解决SNAPSHOT频繁打包不刷新问题
+            configurations.all {
+                resolutionStrategy {
+                    cacheChangingModulesFor 0, 'seconds'
+                    cacheDynamicVersionsFor 10, 'minutes'
+                }
+            }
+
+            buildTypes {
+                release {
+                    // 大多数module不混淆，少数如需混淆覆盖配置即可
+                    minifyEnabled false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                }
+            }
+
+            compileOptions {
+                encoding "UTF8"
+                sourceCompatibility = 1.8
+                targetCompatibility = 1.8
+            }
+
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+
+            viewBinding {
+                enabled = true
+            }
+        }
+    }
+
+    /**
+     * Kotlin 配置
+     */
+    configKotlin = { project ->
+        // 应用 kotlin 插件
+        project.apply plugin: 'kotlin-android'
+        project.apply plugin: 'kotlin-kapt'
+        project.apply plugin: 'kotlin-parcelize'
+        // Kotlin 运行库
+        project.dependencies.implementation SDK.ktx_jdk7
+        // Kotlin 协程库
+        project.dependencies.implementation SDK.ktx_coroutines
+
+    }
+
+    /**
+     * cpp配置
+     */
+    configCpp = { project ->
+        project.android {
+            defaultConfig {
+                externalNativeBuild {
+                    cmake {
+                    }
+                }
+            }
+
+            externalNativeBuild {
+                cmake {
+                    path 'src/main/cpp/CMakeLists.txt'
+                }
+            }
+        }
+    }
+
+    /**
+     * 依赖配置
+     */
+    configDependencies = { project ->
+        project.dependencies {
+            implementation SDK.activityx
+            // implementation SDK.activityx_ktx
+            implementation SDK.fragmentx
+            // implementation SDK.fragmentx_ktx
+        }
+    }
+
+    /**
+     * ARouter 配置
+     */
+    configARouter = { project ->
+        project.kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        project.dependencies.implementation 'com.alibaba:arouter-api:1.5.2'
+        project.dependencies.kapt 'com.alibaba:arouter-compiler:1.5.2'
+    }
+}

@@ -1,0 +1,27 @@
+apply from: '../config.gradle'
+
+project.ext.configAppModule project
+
+dependencies {
+    implementation SDK.ktx_jdk7
+    implementation SDK.core_ktx
+    implementation SDK.ktx_coroutines
+    implementation SDK.appcompat
+    implementation SDK.activityx
+    implementation SDK.activityx_ktx
+    implementation SDK.fragmentx
+    implementation SDK.fragmentx_ktx
+    implementation SDK.recyclerview
+    implementation SDK.material
+    implementation SDK.constraintlayout
+    implementation SDK.coordinatorlayout
+    implementation SDK.lifecycle_extensions
+
+    implementation("com.squareup.okhttp3:okhttp:4.0.1")
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.google.code.gson:gson:2.8.7'
+}

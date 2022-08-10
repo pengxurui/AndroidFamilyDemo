@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_sync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickSync"
+        android:text="串行请求：结果一定是推荐图书" />
+
+    <Button
+        android:id="@+id/btn_async"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickAsync"
+        android:text="并行请求：结果不稳定" />
+
+    <Button
+        android:id="@+id/btn_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickHot"
+        android:text="请求热门图书" />
+
+    <Button
+        android:id="@+id/btn_recommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickRecommend"
+        android:text="请求推荐图书" />
+
+    <CheckBox
+        android:id="@+id/box_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="过滤过期响应" />
+
+    <CheckBox
+        android:id="@+id/box_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消过期请求" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结果展示：" />
+
+
+</LinearLayout>
