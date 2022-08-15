@@ -2,7 +2,7 @@ apply from: '../config.gradle'
 
 project.ext.configAppModule project
 
-if (ENABLED) {
+if (ENABLED.toBoolean()) {
     apply plugin: 'com.pengxr.toastplugin'
 }
 

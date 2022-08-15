@@ -16,10 +16,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:7.1.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
-        if (ENABLED) {
-            classpath "com.pengxr:toast:1.1.0"
-            // For debug
-//            classpath project(':lib')
+        if (ENABLED.toBoolean()) {
+            classpath "com.pengxr:toast:1.2.0"
         }
     }
 }

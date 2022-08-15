@@ -3,13 +3,9 @@ package com.pengxr.toastplugin
 import com.android.build.api.variant.VariantInfo
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.tools.r8.internal.it
-import com.android.tools.r8.internal.on
 import javassist.ClassPool
 import javassist.NotFoundException
 import javassist.bytecode.AnnotationsAttribute
-import javassist.tools.Callback.insertAfter
-import org.apache.groovy.ast.tools.AnnotatedNodeUtils.hasAnnotation
 import org.gradle.api.Incubating
 import org.gradle.api.Project
 import java.io.InputStream
@@ -23,6 +19,8 @@ internal class ToastTransform(val project: Project) : BaseCustomTransform(true) 
     override fun getName() = "ToastTransform"
 
     override fun isIncremental() = true
+
+    override fun classFilter(className: String) = className.endsWith("Activity.class")
 
     /**
      * 用于过滤 Variant，返回 false 表示该 Variant 不执行 Transform

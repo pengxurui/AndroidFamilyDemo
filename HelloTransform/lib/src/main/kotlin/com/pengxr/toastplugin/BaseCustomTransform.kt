@@ -93,11 +93,15 @@ abstract class BaseCustomTransform(private val debug: Boolean) : Transform() {
                     }
                 } else {
                     // 4.2 Transform dir input in full build.
+                    // Traversal fileTree (depthFirstPreOrder).
                     for (inputFile in FileUtils.getAllFiles(inputDir)) {
-                        // Traversal fileTree (depthFirstPreOrder).
+                        val outputFile = concatOutputFilePath(outputDir, inputFile)
                         if (classFilter(inputFile.name)) {
-                            val outputFile = concatOutputFilePath(outputDir, inputFile)
                             doTransformFile(inputFile, outputFile, function)
+                        } else {
+                            // Copy.
+                            Files.createParentDirs(outputFile)
+                            FileUtils.copyFile(inputFile, outputFile)
                         }
                     }
                 }
@@ -120,10 +124,15 @@ abstract class BaseCustomTransform(private val debug: Boolean) : Transform() {
                     ZipOutputStream(fos).use { zos ->
                         var entry = zis.nextEntry
                         while (entry != null && isValidZipEntryName(entry)) {
-                            if (!entry.isDirectory && classFilter(entry.name)) {
+                            if (!entry.isDirectory) {
                                 zos.putNextEntry(ZipEntry(entry.name))
-                                // Apply transform function.
-                                applyFunction(zis, zos, function)
+                                if (classFilter(entry.name)) {
+                                    // Apply transform function.
+                                    applyFunction(zis, zos, function)
+                                } else {
+                                    // Copy.
+                                    zis.copyTo(zos)
+                                }
                             }
                             entry = zis.nextEntry
                         }
