@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/helper_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="点击按钮以下按钮才会使用自定义配置，默认 LeakCanary 会在产生无用对象后五秒判定是否泄漏" />
+
+    <Button
+        android:id="@+id/leak_config_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="自定义 LeakCanary 配置" />
+
+    <Button
+        android:id="@+id/recreate_activity_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="触发 Activity 重建" />
+
+    <Button
+        android:id="@+id/leak_activity_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Activity 泄漏" />
+
+    <Button
+        android:id="@+id/show_dialog_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Dialog 泄漏" />
+
+    <Button
+        android:id="@+id/start_service_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Service 泄漏" />
+
+    <Button
+        android:id="@+id/leak_receiver_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="BroadcastReceiver 泄漏" />
+
+    <Button
+        android:id="@+id/message_leak_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="延迟 Handler 消息造成 Activity 泄漏" />
+
+    <Button
+        android:id="@+id/infinite_animator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="动画造成 Activity 泄漏" />
+
+    <Button
+        android:id="@+id/finish_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Finish" />
+
+</LinearLayout>
