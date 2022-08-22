@@ -42,4 +42,7 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android-process:2.9.1'
+
+    debugImplementation "com.kuaishou.koom:koom-java-leak:2.2.0"
+    debugImplementation "com.kuaishou.koom:koom-monitor-base:2.2.0"
 }

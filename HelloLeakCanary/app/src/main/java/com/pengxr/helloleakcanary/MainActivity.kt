@@ -2,7 +2,6 @@ package com.pengxr.helloleakcanary
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -16,13 +15,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.pengxr.helloleakcanary.*
-import java.util.concurrent.atomic.AtomicReference
-import kotlin.concurrent.thread
-import kotlin.random.Random
+import com.kwai.koom.base.DefaultInitTask
+import com.kwai.koom.fastdump.ForkJvmHeapDumper
 import leakcanary.AppWatcher
 import leakcanary.EventListener
 import leakcanary.LeakCanary
+import shark.AppSingletonInspector
+import shark.ObjectInspector
+import java.util.concurrent.atomic.AtomicReference
+import kotlin.concurrent.thread
+import kotlin.random.Random
 
 /**
  * 在官方 Demo 的基础上修改
@@ -36,14 +38,27 @@ class MainActivity : AppCompatActivity(), EventListener {
         setContentView(R.layout.activity_main)
 
         val app = application as ExampleApplication
-
         // 自定义 LeakCanary 配置
         findViewById<Button>(R.id.leak_config_button).setOnClickListener {
+            // 使用默认配置初始化 Koom
+            DefaultInitTask.init(application)
+            // 自定义 LeakCanary 配置
             LeakCanary.config = LeakCanary.config.copy(
                 // 自定义计数阈值
                 retainedVisibleThreshold = 3,
                 // 自定义事件监听器
-                eventListeners = LeakCanary.config.eventListeners + this
+                eventListeners = LeakCanary.config.eventListeners + this,
+                // 自定义 Heap Dump 执行器
+                heapDumper = {
+                    ForkJvmHeapDumper.getInstance().dump(it.absolutePath)
+                },
+                // 自定义
+                objectInspectors = LeakCanary.config.objectInspectors + ObjectInspector { reporter ->
+                    // reporter.notLeakingReasons += "非泄漏原因"
+                    // reporter.leakingReasons += "泄漏原因"
+                } + AppSingletonInspector(
+                    // 标记全局类的类名即可
+                )
             )
         }
 
