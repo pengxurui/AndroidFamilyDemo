@@ -1,4 +1,4 @@
-![](https://user-images.githubusercontent.com/25008934/186933937-82753376-797e-466d-84b0-c541a4fdd49c.png)
+![](https://github.com/pengxurui/AndroidFamily/blob/master/images/Android_Banner.png)
   
 <p align='center'>
   <a href="https://www.github.com/pengxurui" target="_blank">
@@ -183,8 +183,8 @@ LeakCanary 是我们非常熟悉内存泄漏检测工具，它能够帮助开发
 
 ## 小彭的其它开源项目
 
-- 🔥  [AndroidFamily](https://github.com/pengxurui/AndroidFamily) 【Android 面经 + Android 学习指南】一份面向 Android 开发者的成长和进阶的学习路线；
-- 🔥 [AndroidPlatforms](https://github.com/pengxurui/AndroidPlatforms) 每个 Android 开发都要收藏的系统适配手册，带你全面体系化地解读 Android 系统更新；
+- [AndroidFamily](https://github.com/pengxurui/AndroidFamily) 【Android 面经 + Android 学习指南】一份面向 Android 开发者的成长和进阶的学习路线；🔥
+- [AndroidPlatforms](https://github.com/pengxurui/AndroidPlatforms) 每个 Android 开发都要收藏的系统适配手册，带你全面体系化地解读 Android 系统更新；🔥
 - [EasyTrack](https://github.com/pengxurui/EasyTrack) 基于西瓜视频前端视图树埋点方案实现的埋点方案；
 - [EasyPrivacy](https://github.com/pengxurui/EasyPrivacy) 一个帮助开发者快速解决整改问题的工具；
 - [LeetCode-Kotlin](https://github.com/pengxurui/LeetCode-Kotlin) LeetCode 高频题解 - Kotlin 版本。
@@ -193,15 +193,13 @@ LeakCanary 是我们非常熟悉内存泄漏检测工具，它能够帮助开发
 
 ---
 
-### Donate
+## Donate
 
-如果本仓库对你有帮助，可以请小彭喝杯速溶咖啡
+如果本仓库对你有帮助，可以请小彭喝杯速溶咖啡。
 
-<p align='center'>
-<img src="[https://github.com/pengxurui/Android-NoteBook/raw/master/images/微信收款码.jpeg](https://github.com/pengxurui/Android-NoteBook/raw/master/images/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.jpeg)" width = "200" />
-</p>
+![](https://github.com/pengxurui/AndroidFamily/blob/master/images/%E8%AF%B7%E5%B0%8F%E5%BD%AD%E5%96%9D%E6%9D%AF%E9%80%9F%E6%BA%B6%E5%92%96%E5%95%A1.png)
 
-### License
+## License
 
 Copyright [2022] [Peng Xurui]
 
