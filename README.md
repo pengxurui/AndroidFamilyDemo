@@ -1,5 +1,8 @@
 # AndroidFamilyDemo
-  
+
+![](https://user-images.githubusercontent.com/25008934/186933937-82753376-797e-466d-84b0-c541a4fdd49c.png)
+
+
 <p align='center'>
   <a href="https://www.github.com/pengxurui" target="_blank">
     <img src="https://img.shields.io/badge/作者-@小彭-brightgreen.svg?style=flat&logo=GitHub">
@@ -85,49 +88,85 @@
 
 ## 详细说明
 
-### HelloAndroidX
+## ✅ MavenPublish
 
-演示 AndroidX 新组件
+如今，项目开发已经不再是单兵作战的时代，而往往是多团队、多组件协同开发。此时，我们会发布组件 & 管理组件的技巧。
 
-相关文章：
+在这篇文章里，我将带你理解组件的基本概念，以及组件发布 & 快照预览 & 依赖切换的实战应用经验。
 
-[Android | Jetpack 处理回退事件的新姿势 —— OnBackPressedDispatcher](https://juejin.cn/post/6967039557220958244)
+[Gradle 系列（4）使用 Maven 实现组件化发布](https://juejin.cn/post/6963633839860088846)
 
-### HelloJni
+## ✅ HelloTransform
 
-演示 JNI 机制
+目前，使用 AGP Transform API 进行字节码插桩已经非常普遍了，例如 Booster、神策等框架中都有 Transform 的影子。Transform 听起来很高大上，其本质就是一个 Gradle Task。
 
-相关文章：
+在这篇文章里，我将带你理解 Transform 的工作机制、使用方法和核心源码解析。
 
-[NDK | 带你点亮 JNI 开发基石符文 (一)](https://juejin.cn/post/6973486697245835294)
+[Gradle 系列（8）其实 Gradle Transform 就是个纸老虎](https://juejin.cn/post/7098752199575994405)
 
----
+## ☑ AutoPacker
 
-### ✅ AKotlinDelegates
+Gradle 系列（11）AGP 案例：多渠道打包（未发布）
 
-Kotlin Delegate is a feature of Kotlin, which is used to implement delegate pattern more gracefully. In fact, the "by" syntax is some kind of essentially compiler oriented syntax sugar. Three kinds of delegate (class delegate, object delegate and local variable delegate) will be converted to "sugar free syntax" at compile time. For example, class delegation: the compiler will implements all methods of the base interface and delegates them directly to the base object. For another example, object delegate and local variable delegate: the compiler will generate the auxiliary property (prop $degelate), while the getter() and setter() methods of the property / variable are simply delegated to the getvalue() and setvalue() methods of the auxiliary property.
+### ✅  KotlinDelegate
 
-[AKotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate) is an easy-to-use Android Kotlin delegate tool. It encapsulates a series of kotlin delegation properties for Android development scenarios. Using its APIs can improve the development efficiency.
+委托（Delegate）是 Kotlin 的一种语言特性，用于更加优雅地实现委托模式。其实，Kotlin 委托的语法关键字是 by，其本质上是面向编译器的语法糖，三种委托（类委托、对象委托和局部变量委托）在编译时都会转化为 “无糖语法”。例如类委托：编译器会实现基础接口的所有方法，并直接委托给基础对象来处理。例如对象委托和局部变量委托：在编译时会生成辅助属性（prop$degelate），而属性 / 变量的 getter() 和 setter() 方法只是简单地委托给辅助属性的 getValue() 和 setValue() 处理。
 
-By the way, If you don't know much about Kotlin delegation, these articles will help you get started：
+[KotlinDelegates](https://github.com/pengxurui/DemoHall/tree/main/KotlinDelegate) 是一个易用的安卓 Kotlin 委托工具类库，它针对安卓开发场景封装了一系列 Kotlin 委托属性，利用其 APIs 可以提高开发效率。
+
+对了，如果你还不太了解 Kotlin 委托机制，这些文章会帮助你入门：
 
 [Kotlin | 委托机制 & 原理 & 应用](https://juejin.cn/post/6958346113552220173)
 
 [Android | ViewBinding 与 Kotlin 委托双剑合璧](https://juejin.cn/post/6960914424865488932)
 
----
+### ✅  HelloAndroidX
 
-### ✅ HelloTransform
+从 [androidx.activity 1.0.0](https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.android.google.cn%2Fjetpack%2Fandroidx%2Freleases%2Factivity%23version_100_3) 开始，Google 引入 OnBackPressedDispatcher API 来处理回退事件，旨在优化回退事件处理：你可以在任何位置定义回退逻辑，而不是依赖于 Activity#onBackPressed()。
 
----
+在这篇文章里，我将介绍 OnBackPressedDispatcher 的使用方法 & 实现原理 & 应用场景。
 
-### MavenPublish
+[Android | Jetpack 处理回退事件的新姿势 —— OnBackPressedDispatcher](https://juejin.cn/post/6967039557220958244)
 
-演示组件化发布
+### ✅  HelloJni
 
-相关文章：
+在 Android 生态中主要有 C/C++、Java、Kotlin 三种语言 ，它们的关系不是替换而是互补。其中，C/C++ 的语境是算法和高性能，Java 的语境是平台无关和内存管理，而 Kotlin 则融合了多种语言中的优秀特性，带来了一种更现代化的编程方式。
 
-[Android工程化实践：组件化发布](https://juejin.cn/post/6963633839860088846)
+JNI 是实现 Java 代码与 C/C++ 代码交互的特性， **思考一个问题 —— Java 虚拟机是如何实现两种毫不相干的语言的交互的呢？** 今天，我们来全面总结 JNI 开发知识框架，为 NDK 开发打下基础。
+
+[NDK 系列（5）JNI 从入门到实践，万字爆肝详解！](https://juejin.cn/post/7125338583959306248)
+
+### ☑  HelloNDK
+
+NDK 系列（7）：NDK 基础：ndk-build & CMake（未发布）
+
+### ☑  HelloModular
+
+组件化系列（4）组件化案例：通用方案（未发布）
+
+### ✅  HelloLeakCanary
+
+LeakCanary 是我们非常熟悉内存泄漏检测工具，它能够帮助开发者非常高效便捷地检测 Android 中常见的内存泄漏。在各大厂自研的内存泄漏检测框架（如腾讯 Matrix 和快手 Koom）的帮助文档中，也会引述 LeakCanary 原理分析。
+
+不吹不黑，LeakCanary 源码中除了实现内存泄漏的监控方案外，还有非常多值得学习的编程技巧，只有沉下心去阅读的人才能够真正体会到。在这篇文章里，我将带你从入门开始掌握 LeakCanary 的使用场景以及使用方法，再介绍 LeakCanary 的工作流程和高级用法，最后通过源码解析深入理解原理。
+
+[为什么各大厂自研的内存泄漏检测框架都要参考 LeakCanary？因为它是真强啊！](https://juejin.cn/post/7134728428003000356)
+
+### ✅  HelloMQTT
+
+**MQTT 是一种基于发布 - 订阅模型的消息传递协议**，在物联网和移动应用有较广泛的应用。如果你的目标是冲击中高级工程师岗位，MQTT 或许是一个不错的亮点。最近，我还发现很多候选人会在简历中写自己 “熟悉 MQTT 协议”，但多数人只是停留在了解或用过的程度。
+
+这篇文章里，我将与你探讨 MQTT 协议的 **工作原理 & 协议消息格式 & 核心特性**，实战的部分我们会在下篇文章中讨论。
+
+[为什么每份 Android 简历都说 “熟悉 MQTT 协议”？](https://juejin.cn/post/6984379979962253342)
+
+### ✅  RaceRequestDemo
+
+[飞书前端提到的竞态问题，在 Android 上怎么解决？](https://juejin.cn/post/7130144715063689253)
+
+昨天，看到飞书团队一篇技术分享 [《如何解决前端常见的竞态问题》](https://juejin.cn/post/7128205011019890695) ，自己的项目中也存在类似的问题，也是容易出 Bug的地方。字节这篇文章是从 Web 端的视角切入的，借鉴意义有限，这篇文章我们从 Android 的视角展开讨论。
+
+其实，异步竞态问题并不是一个难题，但是本着精益求精的态度，对问题做一次全面分析，再思考有哪些解决方案，哪些是最优最适合的方案，对自己和社区都会有帮助。
 
 ---
 
