@@ -1,0 +1,201 @@
+// 对于 app 模块，我们需要应用 com.android.application 插件
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+// AGP 构建配置
+android {
+    // 命名空间
+    namespace 'com.example.myapp'
+    // 编译 SDK 版本：程序可以使用不高于 compileSdkVersion 版本提供的 Android API
+    compileSdk 32
+    // 编译 SDK 版本：程序可以使用不高于 compileSdkVersion 版本提供的 Android API
+
+    // 默认配置：提供适用于所有构建变体的配置，会被构建变体的配置覆盖
+    defaultConfig {
+        // android:package 包名：包名是应用的唯一标识，需要保证在整个应用市场唯一
+        applicationId "com.pengxr.hellobuildvariant"
+        // 最低支持平台版本：会影响允许安装的最低设备版本
+        minSdk 21
+        // 最低支持平台版本：会影响允许安装的最低设备版本
+        targetSdk 32
+        // 应用版本号标识
+        versionCode 1
+        // 应用版本号可见标识
+        versionName "1.0"
+
+        // BuildConfig 配置
+        buildConfigField("String", "SERVER_URL", '"http://release.com"')
+        // Manifest 占位符配置
+        manifestPlaceholders = [
+                APPID : "ID654321"
+        ]
+        // 资源配置
+        resValue("string", "label", "Release")
+
+        // 指定缺失的维度
+        missingDimensionStrategy 'minApi'/*维度*/, 'minApi18', 'minApi23', '没有的风味'
+    }
+
+    // APK 签名配置
+    signingConfigs {
+        release {
+            storeFile file("release.keystore")
+            storePassword "release123"
+            keyAlias "release"
+            keyPassword "release123"
+        }
+
+        debug {
+            storeFile file("debug.keystore")
+            storePassword "debug123"
+            keyAlias "debug"
+            keyPassword "debug123"
+        }
+    }
+
+    // 构建类型：研发周期使用的构建配置，Gradle 默认提供了 debug 和 release 类型
+    buildTypes {
+        release {
+            // 签名
+            signingConfig signingConfigs.release
+            // 压缩、优化、混淆开关
+            minifyEnabled true
+            // 删除无用资源
+            shrinkResources true
+            // 调试开关
+            debuggable false
+            // 对齐开关
+            zipAlignEnabled true
+            // 混淆配置
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            // 签名
+            signingConfig signingConfigs.debug
+            // 压缩、优化、混淆开关
+            minifyEnabled false
+            // 删除无用资源
+            shrinkResources false
+            // 调试开关
+            debuggable true
+            // 对齐开关
+            zipAlignEnabled false
+            // 混淆配置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // BuildConfig 配置
+            buildConfigField("String", "SERVER_URL", '"http://debug.com"')
+            // Manifest 占位符配置
+            manifestPlaceholders = [
+                    APPID : "ID123456"
+            ]
+            // 资源配置
+            resValue("string", "label", "Debug")
+        }
+        staging {
+            matchingFallbacks = ['debug', 'qa', 'release', '不存在的构建类型']
+        }
+    }
+
+    // 产品风味维度
+    flavorDimensions "channel", "tier"
+
+    // 产品风味：发布产品使用的构建配置，如免费版和收费版。产品风味是可选的，需要手动创建
+    productFlavors {
+        free {
+            // 指定维度
+            dimension "tier"
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+            // 资源配置
+            resValue("string", "label", "free")
+            matchingFallbacks = ['demo', '没有的风味']
+        }
+
+        paid {
+            // 指定维度
+            dimension "tier"
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+            // 资源配置
+            resValue("string", "label", "paid")
+        }
+
+        huawei {
+            // 指定维度
+            dimension "channel"
+        }
+
+        vivo {
+            // 指定维度
+            dimension "channel"
+        }
+
+        oppo {
+            // 指定维度
+            dimension "channel"
+        }
+    }
+
+    // 变体过滤
+    variantFilter { variant ->
+        // 例如：过滤 huaweiPaidDebug，过滤后不会出现在 BuildVariants 面板
+        def flavors = variant.flavors.name
+        def buildType = variant.buildType.name
+        if (flavors.contains("oppo") && flavors.contains("paid") && buildType.equals("debug")) {
+            setIgnore(true)
+        }
+    }
+
+    // 分包配置
+    splits {
+        density {
+            enable true
+            reset()
+            include "mdpi", "hdpi"
+        }
+        abi {
+            enable true
+            reset()
+            include "x86", "x86_64"
+            universalApk true
+        }
+    }
+
+    // Java 版本
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+configurations {
+    // 初始化 huaweiFreeDebug 构建变体的配置名称
+    huaweiFreeDebugImplementation {}
+}
+
+dependencies {
+    implementation project(":lib")
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // 对 huawei 产品风味声明依赖
+    huaweiImplementation 'androidx.core:core-ktx:1.7.0'
+    // 对 free 产品风味声明依赖
+    freeImplementation 'androidx.core:core-ktx:1.7.0'
+    // 对 debug 构建类型声明依赖
+    debugImplementation 'androidx.core:core-ktx:1.7.0'
+    // 对 huaweiFree 构建变体声明依赖（需要在 configurations 代码块中初始化配置名称）
+    huaweiFreeDebugImplementation 'androidx.core:core-ktx:1.7.0'
+}
