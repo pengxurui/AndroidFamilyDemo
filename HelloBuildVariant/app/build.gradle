@@ -7,10 +7,9 @@ plugins {
 // AGP 构建配置
 android {
     // 命名空间
-    namespace 'com.example.myapp'
+    namespace 'com.pengxr.hellobuildvariant'
     // 编译 SDK 版本：程序可以使用不高于 compileSdkVersion 版本提供的 Android API
     compileSdk 32
-    // 编译 SDK 版本：程序可以使用不高于 compileSdkVersion 版本提供的 Android API
 
     // 默认配置：提供适用于所有构建变体的配置，会被构建变体的配置覆盖
     defaultConfig {
